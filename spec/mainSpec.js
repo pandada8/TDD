@@ -2,23 +2,30 @@
 
 var game = require('../main.js')
 
+
+
 describe("战斗吧少年！",function(){
-    beforeEach(function(){
-        game.logs = [];
-        game.log = function(words){
-            game.logs.push(words);
+    beforeAll(function(){
+        this.logger = {
+            log:function(info){
+                console.log('!!', this)
+                this.logs.push(info)
+            }
         }
+    })
+    beforeEach(function(){
+        this.logger.logs = []
     })
 
     it("返回赢家并打印",function(){
         var A = {life: 10, name:"A"};
         var B = {life: 0, name:"B"};
-        var fight = new game.Fight(A, B);
+        var fight = new game.Fight(A, B, this.logger);
         var winner = fight.Winner();
 
         expect(winner.name).toBe(A.name)
         fight.logWinner()
-        expect(game.logs.slice(-1)[0]).toBe("A胜利")
+        expect(this.logger.logs.slice(-1)[0]).toBe("A胜利")
     })
 
     it("当两人属性一致时，先手胜", function(){
@@ -72,16 +79,17 @@ describe("战斗吧少年！",function(){
     })
 
     it("测试Log_两个正常人", function(){
-        var A = new game.Monster('张三', 10, 20);
-        var B = new game.Monster('李四', 10, 20);
+        console.log(game)
+        var A = new game.model.Player('张三', 10, 20);
+        var B = new game.model.Player('李四', 10, 20);
         var fight = new game.Fight(A, B);
         fight.start()
         expect(game.logs.join('|')).toBe("普通人张三攻击了普通人李四,李四受到了20点伤害, 李四的剩余生命值-10|张三胜利")
     })
 
     it("测试Log_使用装备", function(){
-        var A = new game.Hero('张三', 40, 20, {name:'木剑', value:20}, {});
-        var B = new game.Monster('李四', 100, 20, {}, {name:"XXX", value:10});
+        var A = new game.model.Hero('张三', 40, 20, {name:'木剑', value:20}, {});
+        var B = new game.model.Player('李四', 100, 20, {}, {name:"XXX", value:10});
         var fight = new game.Fight(A, B);
         fight.start()
         expect(game.logs.join('|')).toBe("战士张三用木剑攻击了普通人李四,李四受到了40点伤害, 李四的剩余生命值60|普通人李四攻击了战士张三,张三受到了20点伤害, 张三的剩余生命值20|战士张三用木剑攻击了普通人李四,李四受到了40点伤害, 李四的剩余生命值20|普通人李四攻击了战士张三,张三受到了20点伤害, 张三的剩余生命值0|李四胜利")
