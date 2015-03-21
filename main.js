@@ -28,9 +28,9 @@ Fight.prototype.start = function(){
     // the flag is a good idea :/
     while(!this.finished()){
         if (flag){
-            this.a.attack(this.b)
+            this.logger.log(this.a.attack(this.b));
         }else{
-            this.b.attack(this.a)
+            this.logger.log(this.b.attack(this.a))
         }
         flag = !flag
     }

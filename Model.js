@@ -3,20 +3,7 @@ function Player(name, life, aggressivity){
     this.name = name;
     this.life = life;
     this.aggressivity = aggressivity;
-    this.weapon = {
-        value: 0,
-        name:"",
-        genMessage:function(){
-            return "";
-        }
-    }
-    this.protection = {
-        value:0,
-        name:"",
-        genMessage:function(){
-            return "";
-        }
-    }
+    this.role = '普通人';
 }
 
 function Hero(name, life, aggressivity, weapon, protection){
@@ -37,7 +24,7 @@ Player.prototype.attack = function attack_by_monster(victim){
         b:victim,
         attack:attack
     })
-    log(str)
+    return str;
 }
 
 Hero.prototype.attack = function attack_by_hero(victim){
@@ -49,7 +36,7 @@ Hero.prototype.attack = function attack_by_hero(victim){
         b:victim,
         attack:attack
     })
-    log(str)
+    return str;
 }
 
 exports.Model = {
