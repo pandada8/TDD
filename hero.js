@@ -1,5 +1,5 @@
 var _ = require('./node_modules/lodash');
-var Player = require('./Model.js').Model.Player;
+var Player = require('./Model.js')
 function Hero(name, life, aggressivity, weapon, protection){
     Player.call(this, name, life, aggressivity);
     this.role = "战士";

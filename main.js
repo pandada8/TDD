@@ -1,8 +1,6 @@
 var _ = require('./node_modules/lodash');
-var model = require('./Model.js').Model;
 
 
-exports.model = model;
 
 Fight = function Fight(master_a, master_b, logger){
     this.a = master_a;

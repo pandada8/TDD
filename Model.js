@@ -23,7 +23,4 @@ Player.prototype.attack = function attack_by_monster(victim){
 }
 
 
-
-exports.Model = {
-    Player:Player
-}
+module.exports = Player;
