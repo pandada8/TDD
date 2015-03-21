@@ -11,7 +11,7 @@ function Hero(name, life, aggressivity, weapon, protection){
 }
 Hero.prototype = Object.create(Player.prototype);
 Hero.constructor = Hero;
-Hero.prototype.protectSelf = function(ap){
+Hero.prototype.beAttack = function(ap){
     return ap >= this.protection.value ? ap - this.protection.value : 0;
 }
 
@@ -21,7 +21,7 @@ Hero.prototype.calcDamage = function(victim){
     if (!_.isEmpty(this.weapon)){
         total_ap += this.weapon.value
     }
-    var total_damage = victim.protectSelf(total_ap)
+    var total_damage = victim.beAttack(total_ap)
     return total_damage;
 }
 
