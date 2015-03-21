@@ -2,8 +2,6 @@
 
 var game = require('../main.js')
 
-
-
 describe("战斗吧少年！",function(){
     var logger = {
         log:function(info){
@@ -75,7 +73,5 @@ describe("战斗吧少年！",function(){
 
         expect(logger.logs.join('|')).toBe("A Attack|A胜利");
     })
-
-
 
 })
