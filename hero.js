@@ -4,21 +4,25 @@ function Hero(name, life, aggressivity, weapon, protection){
     Player.call(this, name, life, aggressivity);
     this.role = "战士";
     this.weapon = weapon;
-    this.protection = protection;
+    this.protection = !_.isEmpty(protection) ? protection : {
+        name: null,
+        value: 0
+    };
 }
 Hero.prototype = Object.create(Player.prototype);
 Hero.constructor = Hero;
+Hero.prototype.protectSelf = function(ap){
+    return ap >= this.protection.value ? ap - this.protection.value : 0;
+}
 
 Hero.prototype.calcDamage = function(victim){
-    var ret = 0;
-    ret += this.aggressivity;
+    var total_ap = 0;
+    total_ap += this.aggressivity;
     if (!_.isEmpty(this.weapon)){
-        ret += this.weapon.value
+        total_ap += this.weapon.value
     }
-    if (!_.isEmpty(victim.protection)){
-        ret -= victim.protection.value
-    }
-    return ret;
+    var total_damage = victim.protectSelf(total_ap)
+    return total_damage;
 }
 
 module.exports = Hero

@@ -1,4 +1,5 @@
 var _ = require('./node_modules/lodash');
+
 function Player(name, life, aggressivity){
     this.name = name;
     this.life = life;
@@ -13,7 +14,9 @@ Player.prototype.calcDamage = function CalcuteDamage(victim){
     }
     return ret;
 }
-
+Player.prototype.protectSelf = function(ap){
+    return ap;
+}
 Player.prototype.attack = function attack_by_monster(victim){
     // should we justwrite this in one line or split it into multi if ?
     var attack = this.calcDamage(victim);
