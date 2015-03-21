@@ -5,7 +5,6 @@ var game = require('../main.js')
 describe("战斗吧少年！",function(){
     var logger = {
         log:function(info){
-            console.log('!!', this)
             this.logs.push(info)
         }
     }

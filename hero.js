@@ -10,7 +10,15 @@ Hero.prototype = Object.create(Player.prototype);
 Hero.constructor = Hero;
 
 Hero.prototype.calcDamage = function(victim){
-    return this.aggressivity + (!_.isEmpty(this.weapon) ? this.weapon.value : 0) - (!_.isEmpty(victim.protection) ? victim.protection.value : 0)
+    var ret = 0;
+    ret += this.aggressivity;
+    if (!_.isEmpty(this.weapon)){
+        ret += this.weapon.value
+    }
+    if (!_.isEmpty(victim.protection)){
+        ret -= victim.protection.value
+    }
+    return ret;
 }
 
 module.exports = Hero

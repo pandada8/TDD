@@ -9,7 +9,11 @@ function Player(name, life, aggressivity){
 }
 
 Player.prototype.calcDamage = function CalcuteDamage(victim){
-    return  (!_.isEmpty(victim.protection)) ? (this.aggressivity < victim.protection.value ? 0 : this.aggressivity - victim.protection.value) : this.aggressivity
+    var ret = this.aggressivity;
+    if (!_.isEmpty(victim.protection) && victim.protection.value <= this.aggressivity){
+        ret -= victim.protection.value;
+    }
+    return ret;
 }
 
 Player.prototype.attack = function attack_by_monster(victim){
