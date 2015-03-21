@@ -1,6 +1,6 @@
 var game = require('../main.js')
 var Hero = require('../hero.js');
-var Player = require('../Model.js');
+var Player = require('../player.js');
 describe("测试 Log 与 攻击", function(){
      it("测试Log_两个正常人", function(){
         var A = new Player('张三', 10, 20);
