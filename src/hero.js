@@ -1,4 +1,4 @@
-var _ = require('./node_modules/lodash');
+var _ = require('../node_modules/lodash');
 var Player = require('./player.js')
 function Hero(name, life, aggressivity, weapon, protection){
     Player.call(this, name, life, aggressivity);

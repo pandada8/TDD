@@ -1,6 +1,6 @@
 // include the lib
 
-var game = require('../main.js')
+var game = require('../src/main.js')
 
 describe("战斗吧少年！",function(){
     var logger = {
